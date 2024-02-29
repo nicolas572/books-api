@@ -21,6 +21,10 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+//controllers
+const booksController = require('./controllers/books_controller.js')
+app.use('/books', booksController)
+
 //listen
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
