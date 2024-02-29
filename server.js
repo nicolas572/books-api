@@ -1,10 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
+const cors = require('cors')
 
 //middleware 
 require('dotenv').config()
 app.use(express.json())
+app.use(cors())
 const PORT = process.env.PORT || 3001
 
 //mongoose configuration
