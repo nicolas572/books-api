@@ -15,4 +15,46 @@ books.get('/', (req, res) => {
         })
 })
 
+//show
+books.get('/:id', (req, res) => {
+    Book.findById(req.params.id)
+        .then(foundBook => {
+            res.status(200).json(foundBook)
+        })
+        .catch(err => {
+            res.status(400).json({ 
+                message: 'something went wrong, could not find book'
+            })
+        })
+})
+
+//update
+books.put('/:id', (req, res) => {
+    Book.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then(updatedBook => {
+            res.status(200).json(updatedBook)
+        })
+        .catch(err => {
+            res.status(400).json({ 
+                message: 'something went wrong, could not update book'
+            })
+        })
+})
+
+//delete
+books.delete('/:id', (req, res) => {
+    Book.findByIdAndDelete(req.params.id)
+        .then(deletedBook => {
+            res.status(200).json({
+                message: 'book deleted'
+            })
+        })
+        .catch(err => {
+            res.status(400).json({ 
+                message: 'something went wrong, could not delete book'
+            })
+        })
+})
+
+//export
 module.exports = books
